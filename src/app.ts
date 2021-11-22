@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import fs from "fs";
 import { Dashboard } from "./classes/dashboard";
 import semver from "semver";
