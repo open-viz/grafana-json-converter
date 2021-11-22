@@ -1,9 +1,10 @@
 {
   "name": "@appscode/grafana-json-converter",
   "version": "0.0.1",
-  "description": "",
   "main": "dist/src/app.js",
-  "bin": "dist/src/app.js",
+  "bin": {
+    "grafana-json-converter": "dist/src/app.js"
+  },
   "typings": "./grafana-json-converter.d.ts",
   "scripts": {
     "exec": "tsc && node dist/src/app.js",
@@ -20,5 +21,14 @@
   "dependencies": {
     "@types/semver": "^7.3.9",
     "semver": "^7.3.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/open-viz/grafana-json-converter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/open-viz/grafana-json-converter/issues"
+  },
+  "homepage": "https://github.com/open-viz/grafana-json-converter#readme",
+  "description": ""
 }
