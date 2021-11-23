@@ -2,56 +2,53 @@
 
 import fs from "fs";
 import { Dashboard } from "./classes/dashboard";
-import semver from "semver";
-import path from "path";
+import inquirer from "inquirer";
+// @ts-ignore
+import inquirerFileTreeSelection from "inquirer-file-tree-selection-prompt";
 
 async function main() {
-  const rootDirectory = __dirname.split("/").slice(0, -2).join("/");
+  console.log("Welcome to Grafana JSON converter tool");
+
+  inquirer.registerPrompt("file-tree-selection", inquirerFileTreeSelection);
+
+  const questions = [
+    {
+      type: "file-tree-selection",
+      name: "inputFileSrc",
+      message:
+        "Select your source JS file. (This JS file must export grafana dashboard type json)",
+      validate: (input: string) => {
+        const extention = input.split(".").pop();
+        if (extention === "js") return true;
+        else return false;
+      },
+    },
+    {
+      type: "list",
+      name: "version",
+      message: "Output version of yor grafana json?",
+      choices: ["7.5.3", "8.1.3"],
+    },
+    {
+      type: "file-tree-selection",
+      name: "outputDir",
+      message: "Output directory",
+      onlyShowDir: true,
+    },
+  ];
+
+  const { inputFileSrc, version, outputDir } = await inquirer.prompt(questions);
   try {
-    let [src, version, dest] = process.argv.slice(2) || [];
-    let sourceJson = {};
-    let sourceFilename = "converted";
-    let targetVersion = semver.valid(semver.coerce(version) || "");
-    if (src === undefined)
-      throw Error(
-        "Please provide a valid source file path as a first argument"
-      );
-    else {
-      const srcFilePath = path.resolve(
-        rootDirectory + "/dist",
-        src.replace(/\.[a-z]*$/, "")
-      );
-      sourceFilename = srcFilePath.split("/").pop() || "converted";
-      try {
-        const sourceJsonModule = await import(srcFilePath);
-        sourceJson = sourceJsonModule.default;
-      } catch (e) {
-        throw e;
-      }
-    }
+    const sourceFilename = inputFileSrc.split("/").pop() || "converted";
+    const sourceJsonModule = await require(inputFileSrc);
+    const sourceJson = sourceJsonModule.default;
 
-    if (!targetVersion)
-      throw Error("Please provide a valid version as a second argument");
+    const dashboard = new Dashboard(sourceJson);
 
-    if (dest === undefined)
-      throw Error(
-        "Please provide a valid destination file path as a third argument"
-      );
-    else {
-      const dashboard = new Dashboard(sourceJson);
-      try {
-        const destPath = path.resolve(rootDirectory, dest);
-        if (!fs.existsSync(destPath)) {
-          fs.mkdirSync(destPath, { recursive: true });
-        }
-        fs.writeFileSync(
-          destPath + `/${sourceFilename}_${version}.json`,
-          JSON.stringify(dashboard.convert(version), null, 2)
-        );
-      } catch (e) {
-        throw e;
-      }
-    }
+    fs.writeFileSync(
+      outputDir + `/${sourceFilename.split(".")[0]}_v${version}.json`,
+      JSON.stringify(dashboard.convert(version), null, 2)
+    );
   } catch (e) {
     console.log(e);
   }
