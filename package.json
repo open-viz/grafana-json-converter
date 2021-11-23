@@ -1,6 +1,6 @@
 {
   "name": "@appscode/grafana-json-converter",
-  "version": "0.0.2-alpha.2",
+  "version": "0.0.2-alpha.3",
   "main": "dist/src/app.js",
   "bin": {
     "grafana-json-converter": "dist/src/app.js"
@@ -10,8 +10,13 @@
     "exec": "tsc && node dist/src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "grafana",
+    "json",
+    "converter",
+    "dashboard"
+  ],
+  "author": "Appscode Devs",
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/express": "^4.17.13",

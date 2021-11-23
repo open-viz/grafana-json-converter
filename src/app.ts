@@ -3,11 +3,15 @@
 import fs from "fs";
 import { Dashboard } from "./classes/dashboard";
 import inquirer from "inquirer";
+import path from "path";
 // @ts-ignore
 import inquirerFileTreeSelection from "inquirer-file-tree-selection-prompt";
 
 async function main() {
-  console.log("Welcome to Grafana JSON converter tool");
+  const rootPath = process.argv[2]
+    ? path.resolve(process.argv[2])
+    : process.cwd();
+  console.log("Welcome to Grafana JSON converter wizard");
 
   inquirer.registerPrompt("file-tree-selection", inquirerFileTreeSelection);
 
@@ -22,6 +26,7 @@ async function main() {
         if (extention === "js") return true;
         else return false;
       },
+      root: rootPath,
     },
     {
       type: "list",
