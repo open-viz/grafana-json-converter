@@ -11,6 +11,15 @@ async function main() {
   const rootPath = process.argv[2]
     ? path.resolve(process.argv[2])
     : process.cwd();
+
+  try {
+    console.log({ rootPath });
+    if (!fs.existsSync(rootPath))
+      throw Error(`path ${rootPath} does not exist`);
+  } catch (e) {
+    console.log(e);
+  }
+
   console.log("Welcome to Grafana JSON converter wizard");
 
   inquirer.registerPrompt("file-tree-selection", inquirerFileTreeSelection);
@@ -32,7 +41,7 @@ async function main() {
       type: "list",
       name: "version",
       message: "Output version of yor grafana json?",
-      choices: ["7.5.3", "8.1.3"],
+      choices: ["7.5.3", "8.1.5"],
     },
     {
       type: "file-tree-selection",
@@ -42,8 +51,10 @@ async function main() {
     },
   ];
 
-  const { inputFileSrc, version, outputDir } = await inquirer.prompt(questions);
   try {
+    const { inputFileSrc, version, outputDir } = await inquirer.prompt(
+      questions
+    );
     const sourceFilename = inputFileSrc.split("/").pop() || "converted";
     const sourceJsonModule = await require(inputFileSrc);
     const sourceJson = sourceJsonModule.default;

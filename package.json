@@ -1,6 +1,6 @@
 {
   "name": "@appscode/grafana-json-converter",
-  "version": "0.0.2-alpha.3",
+  "version": "0.0.2",
   "main": "dist/src/app.js",
   "bin": {
     "grafana-json-converter": "dist/src/app.js"
