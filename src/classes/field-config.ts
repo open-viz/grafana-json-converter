@@ -1,4 +1,5 @@
 import { satisfies } from "semver";
+import { OmitMethod } from "../../non-function-properties";
 
 class TimeseriesCustom {
   drawStyle: "line" | "bars" | "points";

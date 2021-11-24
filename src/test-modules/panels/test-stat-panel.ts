@@ -1,3 +1,4 @@
+import { OmitMethod } from "../../../non-function-properties";
 import { StatPanel } from "../../classes/panel";
 
 const testStatPanel: OmitMethod<StatPanel> = {

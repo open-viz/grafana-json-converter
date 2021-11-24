@@ -1,3 +1,5 @@
+import { OmitMethod } from "../../non-function-properties";
+
 class Annotation {
   builtIn: number;
   datasource: string;

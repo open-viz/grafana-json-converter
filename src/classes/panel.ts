@@ -1,4 +1,5 @@
 import { satisfies } from "semver";
+import { OmitMethod } from "../../non-function-properties";
 import {
   StatFieldConfig,
   TimeseriesFieldConfig,

@@ -1,4 +1,4 @@
-type OmitMethod<T> = T extends Array<Object>
+export type OmitMethod<T> = T extends Array<Object>
   ? Array<OmitMethod<T[number]>>
   : T extends Object
   ? {

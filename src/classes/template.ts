@@ -1,4 +1,5 @@
 import { satisfies } from "semver";
+import { OmitMethod } from "../../non-function-properties";
 
 export class Template {
   allValue: string | null;

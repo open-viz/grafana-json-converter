@@ -1,11 +1,12 @@
 {
   "name": "@appscode/grafana-json-converter",
-  "version": "0.0.2",
+  "version": "0.0.3-alpha.1",
   "main": "dist/src/app.js",
   "bin": {
     "grafana-json-converter": "dist/src/app.js"
   },
-  "typings": "./grafana-json-converter.d.ts",
+  "type": "module",
+  "typings": "dist/typings/src/classes/dashboard.d.ts",
   "scripts": {
     "exec": "tsc && node dist/src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
