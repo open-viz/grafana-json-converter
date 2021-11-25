@@ -1,4 +1,4 @@
-import { OmitMethod } from "../../../non-function-properties";
+import { OmitMethod } from "../../omit-method";
 import { Dashboard } from "../../classes/dashboard";
 import { NonRowPanel } from "../../classes/panel";
 import testRowPanel from "../panels/test-row-panel";

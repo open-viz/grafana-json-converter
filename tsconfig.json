@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
     "alwaysStrict": true,
-    "declaration": true,
-    "declarationDir": "dist/typings",
     "noImplicitAny": true,
     "noImplicitOverride": true,
-    "module": "ESNext",
+    "module": "CommonJS",
     "esModuleInterop": true,
     "target": "es6",
     "moduleResolution": "node",

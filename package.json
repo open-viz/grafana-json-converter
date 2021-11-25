@@ -5,7 +5,6 @@
   "bin": {
     "grafana-json-converter": "dist/src/app.js"
   },
-  "type": "module",
   "typings": "dist/typings/src/classes/dashboard.d.ts",
   "scripts": {
     "exec": "tsc && node dist/src/app.js",
