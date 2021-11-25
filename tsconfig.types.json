@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "module": "AMD",
+    "esModuleInterop": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "strictNullChecks": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outFile": "grafana-json-converter"
+  },
+  "lib": [
+    "es2015"
+  ]
+}

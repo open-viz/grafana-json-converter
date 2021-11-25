@@ -1,14 +1,14 @@
 {
   "name": "@appscode/grafana-json-converter",
-  "version": "0.0.3-alpha.1",
+  "version": "0.0.3-alpha.2",
   "main": "dist/src/app.js",
   "bin": {
     "grafana-json-converter": "dist/src/app.js"
   },
-  "typings": "dist/typings/src/classes/dashboard.d.ts",
+  "typings": "grafana-json-converter.d.ts",
   "scripts": {
-    "exec": "tsc && node dist/src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc && rm -rf grafana-json-converter.d.ts && tsc --project tsconfig.types.json",
+    "exec": "npm run build && node dist/app.js"
   },
   "keywords": [
     "grafana",
